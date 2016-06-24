@@ -330,12 +330,19 @@ puts "Using Java Memory: #{ENV["JAVA_MEM"]}"
     instrument 'ruby.install_ruby' do
       return false unless ruby_version
 
+      puts "ruby version is #{ruby_version.version}"
       if ruby_version.build?
+        puts "IN HERE"
         FileUtils.mkdir_p(build_ruby_path)
+        puts "ruby version is #{ruby_version.version} 1"
         Dir.chdir(build_ruby_path) do
+	  puts "ruby version is #{ruby_version.version} 2"
           ruby_vm = "ruby"
+	  puts "ruby version is #{ruby_version.version} 3"
           instrument "ruby.fetch_build_ruby" do
+	    puts "ruby version is #{ruby_version.version} 4"
             @fetchers[:mri].fetch_untar("#{ruby_version.version.sub(ruby_vm, "#{ruby_vm}-build")}.tgz")
+	    puts "ruby version is #{ruby_version.version} 5"
           end
         end
       end
@@ -364,6 +371,8 @@ ERROR_MSG
             FileUtils.rm(file)
             FileUtils.rm(sha_file)
           else
+            puts "IN HERE2"
+            puts "ruby #{ruby_version.version}"
             @fetchers[:mri].fetch_untar("#{ruby_version.version}.tgz")
           end
         end

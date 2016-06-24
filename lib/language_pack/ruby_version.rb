@@ -29,6 +29,7 @@ module LanguagePack
     include LanguagePack::ShellHelpers
 
     def initialize(bundler_output, app = {})
+      puts "BUNDLER OUTPUT WAS #{bundler_output}"
       @set            = nil
       @bundler_output = bundler_output
       @app            = app
@@ -80,20 +81,25 @@ module LanguagePack
 
     def none
       if @app[:last_version] && !@app[:is_new]
+        puts "HERE3"
         @app[:last_version]
       else
+        puts "HERE4"
         DEFAULT_VERSION
       end
     end
 
     def set_version
       if @bundler_output.empty?
+        puts "HERE1"
         @set     = false
         @version = none
       else
+        puts "HERE2"
         @set     = :gemfile
         @version = @bundler_output
       end
+      puts "version is now #{@version}"
     end
 
     def parse_version
