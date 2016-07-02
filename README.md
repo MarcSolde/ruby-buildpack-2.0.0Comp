@@ -7,6 +7,8 @@ This is based on the [Heroku buildpack] (https://github.com/heroku/heroku-buildp
 
 Additional information can be found at [CloudFoundry.org](http://docs.cloudfoundry.org/buildpacks/).
 
+This is a copy rollbacked to the last release where you could use the ruby's 2.0.0 version, for legacy code reasons.
+
 ## Usage
 
 This buildpack will be used if your app has a `Gemfile` and `Gemfile.lock` in the root directory. It will then use Bundler to install your dependencies.
